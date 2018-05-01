@@ -1,23 +1,56 @@
-.header{
-  /*  width: 600px;*/
+.header {
+    /*  width: 600px;*/
     background: gainsboro;
 }
-h1{
+
+h1 {
     color: white;
 
 }
-dt{
+
+dt {
     display: block;
-  /*  float: left;*/
+    float: left;
     background: gainsboro;
-}
-dd{
-    display: inline-block;
+    width: 184px;
+    height: 95px;
+    text-align: center;
+
 }
 
-dl span{
+dd {
+    margin-left: 150px;
+    background: ghostwhite;
+}
+
+dl span {
     font-weight: 600;
 
+}
+
+dt:nth-of-type(4) {
+    margin-top: -24px;
+}
+
+dt:nth-of-type(4) ~ dd {
+    margin-top: -24px;
+}
+
+dt:nth-of-type(5) ~ dd {
+    margin-top: 0px;
+}
+
+dt:nth-of-type(4) + dd span {
+
+    display: inline-block;
+    margin-left: 36px;
+
+}
+
+.span3{
+    margin-left: 2px;
+    margin-top: 26px;
+    display: inline-block;
 }
 
 
