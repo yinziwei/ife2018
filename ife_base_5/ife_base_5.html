@@ -3,7 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>三种简历</title>
-    <link rel="stylesheet" href="css/style_1.css" id="stylekind"/>
+    <link rel="stylesheet" href="css/style_0.css" id="stylekind"/>
 
 
 </head>
@@ -55,13 +55,14 @@
         var button = document.getElementsByTagName("button");
         for (let i = 0; i < button.length; i++) {
             button[i].onclick = changeStyles;
+
         }
     }
     function changeStyles() {
         var styletable = document.getElementById("stylekind");
+
         /* var goal= e.target||window.event;
          var name=goal.name;*/
-
         styletable.href = 'css/style_' + this.name + '.css'
 
     }
