@@ -1,0 +1,24 @@
+.header{
+  /*  width: 600px;*/
+    background: gainsboro;
+}
+h1{
+    color: white;
+
+}
+dt{
+    display: block;
+  /*  float: left;*/
+    background: gainsboro;
+}
+dd{
+    display: inline-block;
+}
+
+dl span{
+    font-weight: 600;
+
+}
+
+
+

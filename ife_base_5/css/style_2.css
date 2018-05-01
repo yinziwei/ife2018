@@ -1,0 +1,41 @@
+.header{
+    float: left;
+    overflow: hidden;
+    height: 870px;
+    width: 300px;
+    background:cornflowerblue;
+}
+.mainContent{
+    float: left;
+    overflow: hidden;
+    margin-left: 40px;
+}
+h1{
+    text-align: center;
+    color: white;
+
+}
+dl span{
+    font-weight: 600;
+
+}
+dl dd{
+    float: left;
+
+}
+dt + dd{
+    margin-left: 0px;
+}
+dt{
+    clear: both;
+    margin-top: 70px;
+}
+.mainContent{
+    margin-top: -50px;
+}
+
+dt:nth-of-type(3) ~ dd{
+    clear: both;
+    margin-left: 0px;
+    margin-top: 20px;
+}
