@@ -1,0 +1,33 @@
+/*
+实现一个三栏布局，左侧固定宽度，中间固定宽度，右侧根据浏览器宽度变化而自适应变化*/
+/*height设置百分比有效时，body中的height要设置为100%*/
+.container{
+    margin:0;
+    padding:0;
+
+
+}
+.left{
+    position: absolute;
+    left: 0;
+    top:0;
+    background: bisque;
+    width: 200px;
+}
+.center{
+    position: absolute;
+    left: 200px;
+    width: 200px;
+    top:0;
+    background: burlywood;
+
+
+
+
+}
+.right {
+    position: absodlute;
+    left: 400px;
+    background: blueviolet;
+    top: 0;
+}

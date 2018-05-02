@@ -1,0 +1,17 @@
+/*效果：实现一个两栏布局，左侧占30%宽度，右侧占70%宽度
+  双float法*/
+.container{
+
+    overflow: hidden;
+
+}
+.left{
+     float: left;
+     width: 30%;
+    background: bisque;
+ }
+.right{
+    float: left;
+    width: 70%;
+    background: burlywood;
+}

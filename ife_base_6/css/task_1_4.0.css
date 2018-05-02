@@ -1,0 +1,39 @@
+/*
+实现一个三栏布局，左侧固定宽度，右侧固定宽度，中间部分宽度随浏览器宽度变化而自适应变化
+ 1、绝对定位法
+ 这里的左中右三个div的顺序是可以任意调整的，这与剩下的两中方法就不一样了，需要注意一下。
+
+此方法的优点是，理解容易，上手简单，受内部元素影响而破坏布局的概率低，就是比较经得起折腾。
+缺点在于：如果中间栏含有最小宽度限制，或是含有宽度的内部元素，当浏览器宽度小到一定程度，会发生层重叠的情况。然而，一般情况下，除非用户显示器分辨率宽度>=1600像素，否则用户不会把浏览器缩小到1000像素以下的，所以该缺陷危害指数3.*/
+.container{
+    margin:0;
+    padding:0;
+
+
+}
+.left{
+    position: absolute;
+    left: 0;
+    top:0;
+   background: bisque;
+}
+.center{
+    margin: 0 210px;
+    background: blueviolet;
+
+
+}
+.right{
+    position: absolute;
+    right: 0;
+    top:0;
+    background: burlywood;
+}
+/*
+遇到了问题
+你把float:right:的div放到float:left的div上面
+例如
+<div style="float:right:"></div>
+                            <div style="float:left"></div>
+
+                                                      如果是left在上的话就会错位*/
