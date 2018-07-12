@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>阿里笔试题1</title>
+    <style type="text/css">
+        #head{
+            border: green 1px solid;
+        }
+        #head #logo{
+            border: red 1px solid;
+            height:80px;
+            width: 80px;
+            margin-top:9px;
+            margin-left: 10px;
+        }
+        #head #user{
+            float: right;
+            border: black 1px solid;
+            width: 100px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        #head #user span{/* 里面的用户名三个字右浮动 */
+            float: right;
+        }
+        #head:after{/* 清除浮动 */
+            content: ".";/* css的content专门应用于在before/after伪元素上，用于插入生成的内容 */
+            display: block;
+            height: 0;
+            visibility: hidden;
+            clear: both;
+        }
+        #container{
+            position: relative;/*父元素相对定位*/
+            height: 300px;
+            margin-top: 10px;
+        }
+        #container #left{/*绝对定位，左0右310，就可以撑出宽度来*/
+            position: absolute;
+            border: blue 1px solid;
+            float: left;
+            height: 300px;
+            right: 310px;
+            left: 0px;
+        }
+        #container #right{/*绝对定位，右0，就可以始终在最右边*/
+            position: absolute;
+            border: red 1px solid;
+            right: 0;
+            width: 300px;
+            height: 300px;
+        }
+        #footer{
+            border: saddlebrown 1px solid;
+            margin-top: 10px;
+            height: 50px;
+            line-height: 50px;/*line-height = height可以使元素垂直居中*/
+            text-align: center;/* 再让文字居于整个区域正中间 */
+        }
+    </style>
+</head>
+<body>
+<div id="head">
+    <div id="logo">logo</div>
+    <div id="user"><span>用户名</span></div>
+</div>
+<div id="container">
+    <div id="left">content-自适应布局</div>
+    <div id="right">aside-定宽200px</div>
+</div>
+<div id="footer"><span>footer</span></div>
+</body>
+</html>

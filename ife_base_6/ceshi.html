@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+
+        var chnNumChar = ["L","1","2","3","4","5","6","7","8","9"];
+
+        var chnUnitChar = ["","S","B","Q","W"];
+
+        function SectionToChinese(section){
+            var strIns = '', chnStr = '';
+            var unitPos = 0;
+            var zero = true;
+            while(section > 0){
+                var v = section % 10;
+                if(v === 0){
+                    if(!zero){
+                        zero = true;
+                        chnStr = chnNumChar[v] + chnStr;
+                    }
+                }else{
+                    zero = false;
+                    strIns = chnNumChar[v];
+                    strIns += chnUnitChar[unitPos];
+                    chnStr = strIns + chnStr;
+                }
+                unitPos++;
+                section = Math.floor(section / 10);
+            }
+            return chnStr;
+        }
+
+        alert(SectionToChinese(12001));
+    </script>
+
+</head>
+<body>
+  <button onclick="SectionToChinese(123)"> 111</button>
+</body>
+</html>

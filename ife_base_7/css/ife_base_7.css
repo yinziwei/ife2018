@@ -1,0 +1,59 @@
+body{
+    margin: 0 0;
+    padding: 0 0;
+}
+.theFirst{
+    background-image: url("../image/bgnew.jpg");
+}
+.theBox{
+
+    text-align: center;
+   /* display:table-cell;*/
+    vertical-align:middle;
+    height: 500px;
+    width: 1700px;
+
+}
+.beCentercontainer{
+    display: inline-block;
+}
+.beCenter{
+  display: inline-block;
+}
+.beCenterbox{
+    text-align: center;
+    display:table-cell;
+    vertical-align:middle;
+    height: 200px;
+    border: 1px solid white;
+    width: 600px;
+}
+.lf{
+    float: left;
+}
+.addressAvaBox{
+    display: flex;
+    flex-wrap: wrap;
+    width: 600px;
+}
+.addressAva{
+    width: 300px;
+}
+.addressAva img {
+    margin-top: 20px;
+}
+.clearfix { overflow: hidden; _zoom: 1; }
+
+.box5{
+    display: inline-block;
+    margin-right: 100px;
+}
+.box6{
+    flex-wrap: nowrap;
+}
+.box4{
+    margin-right: 15px;
+}
+.box7{
+    overflow: hidden;
+}

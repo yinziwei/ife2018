@@ -106,18 +106,17 @@ nav {
 /*第四部分*/
 section {
     display: flex;
-    display: -webkit-flex; /* Safari */
-    flex-direction: row;
 
+    margin: 5px 0;
 
 }
 
 article {
+    flex: 1;
+    border: 1px solid #ccc;
     padding: 80px;
-    border: 1px solid gainsboro;
-    width: 100%;
-    margin: 10px;
-    flex:1 ;
+    text-align: center;
+    margin: 0 5px;
 
 }
 footer{

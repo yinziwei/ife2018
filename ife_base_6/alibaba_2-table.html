@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>人员信息表格</title>
+    <style type="text/css">
+        body {
+            font-family: "arial", sans-serif;
+        }
+        #person-list {
+            width: 80%;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+        #person-list thead {
+            font-weight: bold;
+        }
+        #person-list button {
+            background-color: transparent;
+            border: 0;
+            font-weight: bold;
+            font-size: small;
+            padding-left: 0;
+            color: #6ba9ee;
+        }
+        #person-list thead tr td {
+            border-bottom: 1px #ccc solid;
+        }
+        #person-list tbody tr td:nth-child(2) {
+            font-weight: bold;
+        }
+        #person-list tbody tr td {
+            border-top: 1px #ccc solid;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        #person-list tbody tr:nth-child(2n+1) {
+            background-color: #eee;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload=function(){
+            if (!document.getElementsByClassName) {//由于较低版本的IE不识别这个。
+                document.getElementsByClassName=function(cls){
+                    var ret=[];
+                    var eles=document.getElementsByTagName('*');
+                    for(var i=0,len=eles.length;i<len;i++){//indexOf()返回的是字母在字符串中的下标，>=0代表存在
+                        if (eles[i].className===cls /*===是严格等于*/
+                                ||eles[i].className.indexOf(cls+'')>=0//当比较'aaa'和'aaa '时
+                                ||eles[i].className.indexOf(''+cls+'')>=0///比较'aaa'和'bbb aaa ccc'时
+                                ||eles[i].className.indexOf(''+cls)>=0///比较'aaa'和' aaa'时
+                        ) {
+                            ret.push(eles[i]);
+                        }
+                    }
+                    return ret;
+                }
+            }
+            var checks = document.getElementsByTagName('input');
+            var tbody = document.getElementsByTagName("tbody")[0];
+            var trs = tbody.getElementsByTagName('tr');
+            var remove = document.getElementById("remove");
+            var sort = document.getElementById("sort");
+            var select = document.getElementById("select");
+
+            remove.onclick = function(){
+                //删除选中行
+                for(var i = checks.length-1; i >= 0;i--){ //因为removeChild的时候，长度会变化，所以不能以小于length作为判断条件，应该从后往前扫描
+                    if(checks[i].checked){
+                        tbody.removeChild(checks[i].parentNode.parentNode);
+                    }
+                }
+
+                //修改序号
+                for(var i = 0;i < trs.length; i++){
+                    var td=trs[i].getElementsByTagName("td")[1];
+                    td.innerHTML=i+1;
+                }
+            };
+
+            sort.onclick=function(){
+                //循环遍历，后面比它小的就插入到它前面去
+                for(var i=0;i < trs.length; i++){
+                    var td=trs[i].getElementsByTagName("td")[3];
+                    for(var j=i;j < trs.length;j++){
+                        var tdd=trs[j].getElementsByTagName("td")[3];
+                        if((td.innerHTML - tdd.innerHTML)>0){
+                            td.parentNode.parentNode.insertBefore(tdd.parentNode,td.parentNode);
+                        }
+                    }
+                }
+
+                //修改序号
+                for(var i=0;i < trs.length;i++){
+                    var td=trs[i].getElementsByTagName("td")[1];
+                    td.innerHTML=i+1;
+                }
+            };
+
+            select.onclick=function(){
+                //如果已经筛选过，页面中有下拉框了就不要再执行此函数了。
+                if(document.getElementsByTagName('select').length>0) return false;
+                var provinces = [];
+                //把所有的省份取出来，存放到数组里
+                for(var i=0;i < trs.length;i++){
+                    var td=trs[i].getElementsByTagName("td")[4];
+                    var prov=td.innerHTML;
+                    provinces.push(prov);
+                }
+                //去重
+                for(var j=0;j< provinces.length;j++){
+                    for(var k=provinces.length;k>j;k--){ //同理，因为长度会发生变化，所以从后往前算
+                        if(provinces[j] === provinces[k]){
+                            provinces.splice(k,1);
+                        }
+                    }
+                }
+
+                //创建selectElem下拉框元素，option为省份
+                var selectElem = document.createElement("select");
+                for(var z = 0;z < provinces.length;z++){
+                    var option=document.createElement("option");
+                    option.innerHTML=provinces[z];
+                    option.value=provinces[z];
+                    selectElem.appendChild(option);
+                }
+                var childNodes=select.parentNode.childNodes;
+                //去掉籍贯两个字
+                for(var x= 0; x< childNodes.length;x++){
+                    if(childNodes[x].nodeType === 3){
+                        childNodes[x].parentNode.removeChild(childNodes[x]);
+                    }
+                }
+                //在按钮之前插入select下拉框
+                select.parentNode.insertBefore(selectElem,select);
+                //监控下拉框的option的点击事件，注意是下拉框的onchange，而不是option的onclick
+                selectElem.onchange = function(){
+                    for(var i =0 ;i< trs.length;i++){
+                        trs[i].style.display="none" ;
+                        if(trs[i].getElementsByTagName("td")[4].innerHTML == selectElem.value){
+                            trs[i].style.display = "";
+                        }
+                    }
+                };
+            };
+            var checks = document.getElementsByTagName('input');
+            var tbody = document.getElementsByTagName("tbody")[0];
+            var trs = tbody.getElementsByTagName("tr");
+
+            var remove = document.getElementById("remove");
+            var sort = document.getElementById("sort");
+            var select = document.getElementById("select");
+        }
+
+    </script>
+</head>
+<body>
+<table id="person-list">
+    <thead>
+    <tr>
+        <td>
+            <button id="remove">删除</button>
+        </td>
+        <td>序号</td>
+        <td>姓名</td>
+        <td>年龄
+            <button id="sort">排序</button>
+        </td>
+        <td>籍贯
+            <button id="select">筛选</button>
+        </td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <input type="checkbox"/>
+        </td>
+        <td>1</td>
+        <td>张三</td>
+        <td>24</td>
+        <td>北京</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox"/>
+        </td>
+        <td>2</td>
+        <td>李斯</td>
+        <td>43</td>
+        <td>陕西</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox"/>
+        </td>
+        <td>3</td>
+        <td>韩信</td>
+        <td>49</td>
+        <td>湖北</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox"/>
+        </td>
+        <td>4</td>
+        <td>宋江</td>
+        <td>43</td>
+        <td>山东</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox"/>
+        </td>
+        <td>5</td>
+        <td>李逵</td>
+        <td>38</td>
+        <td>青海</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox"/>
+        </td>
+        <td>6</td>
+        <td>林冲</td>
+        <td>42</td>
+        <td>北京</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
